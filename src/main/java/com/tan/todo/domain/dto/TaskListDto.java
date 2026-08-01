@@ -3,7 +3,7 @@ package com.tan.todo.domain.dto;
 import java.util.List;
 import java.util.UUID;
 
-public record TasListDto(
+public record TaskListDto(
         UUID id,
         String title,
         String description,

@@ -28,7 +28,7 @@ public class TaskMapperImpl implements TaskMapper {
         return new TaskDto(
                 task.getId(),
                 task.getTitle(),
-                task.getDesciption(),
+                task.getDescription(),
                 task.getDueDate(),
                 task.getPriority(),
                 task.getStatus()

@@ -1,7 +1,6 @@
 package com.tan.todo.domain.entites;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,11 +39,11 @@ public class TaskList {
     public TaskList() {
     }
 
-    public TaskList(List<Task> tasks, UUID id, String title, String description, LocalDateTime created_time, LocalDateTime updated_time) {
-        this.tasks = tasks;
+    public TaskList(UUID id, String title, String description, List<Task> tasks, LocalDateTime created_time, LocalDateTime updated_time){
         this.id = id;
         this.title = title;
         this.description = description;
+        this.tasks = tasks;
         this.created_time = created_time;
         this.updated_time = updated_time;
     }
