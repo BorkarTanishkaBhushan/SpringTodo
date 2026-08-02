@@ -1,4 +1,4 @@
-package com.tan.todo.repository;
+package com.tan.todo.repositories;
 
 import com.tan.todo.domain.entites.TaskList;
 import org.springframework.data.jpa.repository.JpaRepository;
