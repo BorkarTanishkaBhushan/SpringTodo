@@ -59,7 +59,7 @@ public class TaskListServiceImpl implements TaskListService {
         }
 
         if(!Objects.equals(taskListId, taskList.getId())){
-            throw new IllegalArgumentException(("ids are not same!"))
+            throw new IllegalArgumentException(("ids are not same!"));
         }
 
         TaskList existingTaskList = taskListRepository.findById(taskListId).orElseThrow(() ->
@@ -69,5 +69,10 @@ public class TaskListServiceImpl implements TaskListService {
         existingTaskList.setDescription(taskList.getDescription());
         existingTaskList.setUpdated_time(LocalDateTime.now());
         return taskListRepository.save(existingTaskList);
+    }
+
+    @Override
+    public void deleteTaskList(UUID taskListId) {
+        taskListRepository.deleteById(taskListId);
     }
 }
