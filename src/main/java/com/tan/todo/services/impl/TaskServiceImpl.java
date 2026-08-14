@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,5 +66,37 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Optional<Task> getTask(UUID taskListId, UUID taskId) {
         return taskRepository.findByTaskListIdAndId(taskListId, taskId);
+    }
+
+    @Override
+    public Task updateTask(UUID taskListId, UUID taskId, Task task) {
+        if(null == task.getId()){
+            throw new IllegalArgumentException("Task must have id");
+        }
+
+        if(!Objects.equals(taskId, task.getId()){
+            throw new IllegalArgumentException(("IDs do not match!"));
+        }
+
+        if(null == task.getPriority()){
+            throw new IllegalArgumentException(("Task must have a priority!"));
+        }
+
+        if(null == task.getStatus()){
+            throw new IllegalArgumentException("Task should a status");
+        }
+
+        Task exisitngTask = taskRepository.findByTaskListIdAndId(taskListId, taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Task doesnt exist!"));
+
+        exisitngTask.setTitle(task.getTitle());
+        exisitngTask.setDescription(task.getDescription());
+        exisitngTask.setDueDate(task.getDueDate());
+        exisitngTask.setPriority(task.getPriority());
+        exisitngTask.setStatus(task.getStatus());
+        exisitngTask.setUpdatedTime(LocalDateTime.now());
+
+        return taskRepository.save(exisitngTask);
+
     }
 }
