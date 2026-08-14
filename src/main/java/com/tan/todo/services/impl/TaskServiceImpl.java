@@ -8,6 +8,7 @@ import com.tan.todo.repositories.TaskListRepository;
 import com.tan.todo.repositories.TaskRepository;
 import com.tan.todo.services.TaskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -100,6 +101,7 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
+    @Transactional
     @Override
     public void deleteTask(UUID taskListId, UUID taskId) {
 //        taskRepository.deleteAllById(taskId);
