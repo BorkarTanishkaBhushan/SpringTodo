@@ -74,8 +74,8 @@ public class TaskServiceImpl implements TaskService {
             throw new IllegalArgumentException("Task must have id");
         }
 
-        if(!Objects.equals(taskId, task.getId()){
-            throw new IllegalArgumentException(("IDs do not match!"));
+        if(!Objects.equals(taskId, task.getId())){
+            throw new IllegalArgumentException("IDs do not match!");
         }
 
         if(null == task.getPriority()){
@@ -98,5 +98,11 @@ public class TaskServiceImpl implements TaskService {
 
         return taskRepository.save(exisitngTask);
 
+    }
+
+    @Override
+    public void deleteTask(UUID taskListId, UUID taskId) {
+//        taskRepository.deleteAllById(taskId);
+        taskRepository.deleteByTaskListIdAndId(taskListId, taskId);
     }
 }
